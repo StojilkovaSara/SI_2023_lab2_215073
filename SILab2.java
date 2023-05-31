@@ -32,46 +32,46 @@ class User {
 
 public class SILab2 {
 
-    public static boolean function (User user, List<User> allUsers) {
-        if (user==null || user.getPassword()==null || user.getEmail()==null){
-            throw new RuntimeException("Mandatory information missing!");
+    public static boolean function (User user, List<User> allUsers) { //1
+        if (user==null || user.getPassword()==null || user.getEmail()==null){ //2
+            throw new RuntimeException("Mandatory information missing!"); //3
         }
 
-        if (user.getUsername()==null){
-            user.setUsername(user.getEmail());
+        if (user.getUsername()==null){ //4
+            user.setUsername(user.getEmail()); //5
         }
 
-        int same = 1;
-        if (user.getEmail().contains("@") && user.getEmail().contains(".")) {
-            same = 0;
-            for (int i=0;i<allUsers.size();i++) {
-                User existingUser = allUsers.get(i);
-                if (existingUser.getEmail() == user.getEmail()) {
-                    same += 1;
+        int same = 1; //6
+        if (user.getEmail().contains("@") && user.getEmail().contains(".")) { //7
+            same = 0; //8
+            for (int i=0;i<allUsers.size();i++) { //9 (9.1, 9.2, 9.3)
+                User existingUser = allUsers.get(i); //10
+                if (existingUser.getEmail() == user.getEmail()) { //11
+                    same += 1; //12
                 }
-                if (existingUser.getUsername() == user.getUsername()) {
-                    same += 1;
+                if (existingUser.getUsername() == user.getUsername()) { //13
+                    same += 1; //14
                 }
-            }
+            } //15
         }
 
-        String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}";
-        String password = user.getPassword();
-        String passwordLower = password.toLowerCase();
+        String specialCharacters="!#$%&'()*+,-./:;<=>?@[]^_`{|}"; //16
+        String password = user.getPassword(); //17
+        String passwordLower = password.toLowerCase(); //18
 
-        if (passwordLower.contains(user.getUsername().toLowerCase()) || password.length()<8) {
-            return false;
+        if (passwordLower.contains(user.getUsername().toLowerCase()) || password.length()<8) { //19
+            return false; //20
         }
-        else {
-            if (!passwordLower.contains(" ")) {
-                for (int i = 0; i < specialCharacters.length(); i++) {
-                    if (password.contains(String.valueOf(specialCharacters.charAt(i)))) {
-                        return same == 0;
+        else { //21
+            if (!passwordLower.contains(" ")) { //22
+                for (int i = 0; i < specialCharacters.length(); i++) { //23 (23.1, 23.2, 23.3)
+                    if (password.contains(String.valueOf(specialCharacters.charAt(i)))) { //24
+                        return same == 0; //25
                     }
-                }
+                } //26
             }
         }
-        return false;
-    }
+        return false; //30
+    } //31
 
 }
